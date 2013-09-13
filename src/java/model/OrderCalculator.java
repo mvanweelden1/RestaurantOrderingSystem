@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Mark Van Weelden
  */
-public class Receipt {
+public class OrderCalculator {
     //private ArrayList<MenuItem> itemsOrdered = null;
     private String[] items;
     private MockMenuDatabase db = new MockMenuDatabase();
@@ -15,7 +15,7 @@ public class Receipt {
     private double total;
     private static final double TAX_RATE = .05;
 
-    public Receipt(String[] items) {
+    public OrderCalculator(String[] items) {
         this.items = items;
     }
     

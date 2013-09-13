@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.MenuItem;
 import model.MockMenuDatabase;
-import model.Receipt;
+import model.OrderCalculator;
 
 /**
  *
@@ -39,10 +39,10 @@ public class ConformationController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String[] menuChoices = request.getParameterValues("menuChoices");
-        Receipt r = new Receipt(menuChoices);
-        ArrayList<MenuItem> itemsOrdered = r.getItemsOrdered();
-        double subTotal = r.getSubTotal();
-        double total = r.getTotal();
+        OrderCalculator o = new OrderCalculator(menuChoices);
+        ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
+        double subTotal = o.getSubTotal();
+        double total = o.getTotal();
         request.setAttribute("itemsOrdered", itemsOrdered);
         request.setAttribute("subTotal", subTotal);
         request.setAttribute("total", total);
