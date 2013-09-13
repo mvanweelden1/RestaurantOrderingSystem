@@ -19,8 +19,8 @@
             <%
                 NumberFormat nf = NumberFormat.getCurrencyInstance();
                 Object itemsSelected = request.getAttribute("itemsOrdered");
-                Object subTotal = (Double)request.getAttribute("subTotal");
-                Object total = (Double)request.getAttribute("total");
+                Object subTotal = request.getAttribute("subTotal");
+                Object total = request.getAttribute("total");
                 ArrayList<MenuItem> itemsOrdered = (ArrayList<MenuItem>) itemsSelected;
             %>
             <%for (MenuItem m : itemsOrdered) {%>
