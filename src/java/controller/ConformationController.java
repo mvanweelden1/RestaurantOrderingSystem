@@ -24,6 +24,13 @@ import model.OrderCalculator;
  */
 @WebServlet(name = "ConformationController", urlPatterns = {"/Conformation"})
 public class ConformationController extends HttpServlet {
+    
+    private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
+    private static final String MENU_CHOICES =  "menuChoices[]";
+    private static final String ITEMS_ORDERED = "itemsOrdered";
+    private static final String SUB_TOTAL = "subTotal";
+    private static final String TOTAL = "total";
+    private static final String DESTINATION_URL = "/conformationPage.jsp";
 
     /**
      * Processes requests for both HTTP
@@ -37,18 +44,18 @@ public class ConformationController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String[] menuChoices = request.getParameterValues("menuChoices");
+        response.setContentType(CONTENT_TYPE);
+        String[] menuChoices = request.getParameterValues(MENU_CHOICES);
         OrderCalculator o = new OrderCalculator(menuChoices);
         ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
         double subTotal = o.getSubTotal();
         double total = o.getTotal();
-        request.setAttribute("itemsOrdered", itemsOrdered);
-        request.setAttribute("subTotal", subTotal);
-        request.setAttribute("total", total);
+        request.setAttribute(ITEMS_ORDERED, itemsOrdered);
+        request.setAttribute(SUB_TOTAL, subTotal);
+        request.setAttribute(TOTAL, total);
 
         RequestDispatcher view =
-                request.getRequestDispatcher("/conformationPage.jsp");
+                request.getRequestDispatcher(DESTINATION_URL);
         view.forward(request, response);
     }
 

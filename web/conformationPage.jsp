@@ -12,15 +12,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="Styles/maincss.css" rel="stylesheet" type="text/css">
         <title>Conformation Page</title>
     </head>
     <body>
         <table>
             <%
+                final String ITEMS_ORDERED = "itemsOrdered";
+                final String SUB_TOTAL = "subTotal";
+                final String TOTAL = "total";
+
+
                 NumberFormat nf = NumberFormat.getCurrencyInstance();
-                Object itemsSelected = request.getAttribute("itemsOrdered");
-                Object subTotal = request.getAttribute("subTotal");
-                Object total = request.getAttribute("total");
+                Object itemsSelected = request.getAttribute(ITEMS_ORDERED);
+                Object subTotal = request.getAttribute(SUB_TOTAL);
+                Object total = request.getAttribute(TOTAL);
                 ArrayList<MenuItem> itemsOrdered = (ArrayList<MenuItem>) itemsSelected;
             %>
             <%for (MenuItem m : itemsOrdered) {%>
@@ -32,13 +38,13 @@
             </tr>
 
             <%}%> 
-            
+
             <tr>
-                <td>Subtotal:</td>
+                <td class="alignRight">Subtotal:</td>
                 <td><%= nf.format(subTotal)%></td>   
             </tr>
             <tr>
-                <td>Total w/Tax:</td>
+                <td class="alignRight">Total w/Tax:</td>
                 <td><%= nf.format(total)%></td>   
             </tr>
 

@@ -11,16 +11,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="Styles/maincss.css" rel="StyleSeet" type="text/css">
+        <link href="Styles/maincss.css" rel="stylesheet" type="text/css">
         <title>Order Form</title>
     </head>
     <body>
-        <form name="form1" id="form1" method="POST" action="Conformation">
+        <form name="form1" id="form1" method="POST" action="Conformation" onsubmit="validate">
             <fieldset>
                 <legend> Menu </legend>
                 <%
+                    final String MENU_ITEMS = "menuitems";
                     Map<String, MenuItem> menuItems = null;
-                    Object menu = request.getAttribute("menuitems");
+                    Object menu = request.getAttribute(MENU_ITEMS);
                     if (menu != null) {
                         menuItems = (Map<String, MenuItem>) menu;
                     }
@@ -28,7 +29,7 @@
                 <%
                     for (String key : menuItems.keySet()) {
                 %>      
-                <input type='checkbox' name='menuChoices'value='<%= key%>'/><%= key%><br>
+                <input type='checkbox' name='menuChoices[]'value='<%= key%>'/><%= key%><br>
 
                 <%}%>
 
@@ -36,4 +37,9 @@
             </fieldset> 
         </form>
     </body>
+
+    <!-- jQuery -->
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/restaurantjs.js"></script>
+
 </html>

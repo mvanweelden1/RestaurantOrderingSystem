@@ -22,6 +22,10 @@ import model.MockMenuDatabase;
  */
 @WebServlet(name = "RestaurantOrderingController", urlPatterns = {"/RestaurantOrderingController"})
 public class RestaurantOrderingController extends HttpServlet {
+    
+    private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
+    private static final String DESTINATION_URL = "/orderForm.jsp";
+    private static final String MENU_ITEMS = "menuitems";
 
     /**
      * Processes requests for both HTTP
@@ -35,16 +39,16 @@ public class RestaurantOrderingController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(CONTENT_TYPE);
         
         MockMenuDatabase db = new MockMenuDatabase();
         //MenuItem[] items = db.getMenu();
         Map<String, MenuItem> items = db.getMenuItemMap();
         
-        request.setAttribute("menuitems", items);
+        request.setAttribute(MENU_ITEMS, items);
         
         RequestDispatcher view =
-                    request.getRequestDispatcher("/orderForm.jsp");
+                    request.getRequestDispatcher(DESTINATION_URL);
             view.forward(request, response);
    
     }
