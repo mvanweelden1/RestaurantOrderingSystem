@@ -15,11 +15,12 @@
         <title>Order Form</title>
     </head>
     <body>
-        <form name="form1" id="form1" method="POST" action="Conformation" onsubmit="validate">
+        <form name="form1" id="form1" method="POST" action="Conformation">
             <fieldset>
                 <legend> Menu </legend>
                 <%
                     final String MENU_ITEMS = "menuitems";
+                    
                     Map<String, MenuItem> menuItems = null;
                     Object menu = request.getAttribute(MENU_ITEMS);
                     if (menu != null) {
@@ -33,7 +34,7 @@
 
                 <%}%>
 
-                <p><input type="submit" name="submit" id="submit" value="Submit"></p>
+                <p><input type="submit" name="submit" id="submit" value="Place Order"/></p>
             </fieldset> 
         </form>
     </body>

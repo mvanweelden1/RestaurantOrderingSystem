@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.MenuItem;
 import model.MockMenuDatabase;
+import model.RestaurantService;
 
 /**
  *
@@ -41,9 +42,13 @@ public class RestaurantOrderingController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType(CONTENT_TYPE);
         
-        MockMenuDatabase db = new MockMenuDatabase();
+        //MockMenuDatabase db = new MockMenuDatabase();
         //MenuItem[] items = db.getMenu();
-        Map<String, MenuItem> items = db.getMenuItemMap();
+        //Map<String, MenuItem> items = db.getMenuItemMap();
+        
+        RestaurantService rs = new RestaurantService();
+        
+        Map<String, MenuItem> items = rs.getAllMenuItems();
         
         request.setAttribute(MENU_ITEMS, items);
         

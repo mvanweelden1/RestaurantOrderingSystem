@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class MockMenuDatabase {
         }
     }
 
-    public Map<String, MenuItem> getMenuItemMap() {
+    public Map<String, MenuItem> getAllMenuItems() {
         return menuItemMap;
     }
 

@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * @author Mark Van Weelden
  */
 public class OrderCalculator {
-    //private ArrayList<MenuItem> itemsOrdered = null;
     private String[] items;
     private MockMenuDatabase db = new MockMenuDatabase();
     private double subTotal;
@@ -19,7 +18,7 @@ public class OrderCalculator {
     }
     
     public ArrayList<MenuItem> getItemsOrdered(){
-        ArrayList itemsOrdered = new ArrayList<MenuItem>();
+        ArrayList<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
         for (String s : items) {
             itemsOrdered.add(db.getMenuItem(s));      
         }
