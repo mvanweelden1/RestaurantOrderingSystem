@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -8,15 +9,17 @@ import java.util.ArrayList;
  */
 public class OrderCalculator {
 
-    private double subTotal = 0;
     private static final double TAX_RATE = .05;
+    List<MenuItem> items = new ArrayList<>();
 
-    public OrderCalculator() {
+    public OrderCalculator(List<MenuItem> items) {
+        
+        this.items = items;
        
     }
     
-    public double getSubTotal(ArrayList<MenuItem> items) {
-    
+    public double getSubTotal() {
+        double subTotal = 0;
         for (MenuItem menuItem : items) {
             subTotal += menuItem.getItemPrice();
         }
@@ -24,7 +27,7 @@ public class OrderCalculator {
     }
 
     public double getTotal() {
-
+        double subTotal = getSubTotal();
         double tax = subTotal * TAX_RATE;
         return subTotal + tax;
 

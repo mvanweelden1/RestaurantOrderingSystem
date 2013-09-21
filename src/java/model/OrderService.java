@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class OrderService {
 
     private IMenuDAO menuDao;
-    OrderCalculator calc = new OrderCalculator();
     ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
+    OrderCalculator calc = new OrderCalculator(itemsOrdered);
 
     public OrderService(IMenuDAO menuDao, String[] s) throws DataAccessException {
         this.menuDao = menuDao;
@@ -18,7 +18,7 @@ public class OrderService {
     }
 
     public double getSubTotal() {
-        return calc.getSubTotal(itemsOrdered);
+        return calc.getSubTotal();
 
     }
 

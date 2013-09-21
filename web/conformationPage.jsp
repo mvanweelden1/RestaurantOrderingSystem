@@ -22,12 +22,14 @@
                 final String SUB_TOTAL = "subTotal";
                 final String TOTAL = "total";
 
-
+                ArrayList<MenuItem> itemsOrdered = null;
                 NumberFormat nf = NumberFormat.getCurrencyInstance();
-                Object itemsSelected = request.getAttribute(ITEMS_ORDERED);
                 Object subTotal = request.getAttribute(SUB_TOTAL);
                 Object total = request.getAttribute(TOTAL);
-                ArrayList<MenuItem> itemsOrdered = (ArrayList<MenuItem>) itemsSelected;
+                Object itemsSelected = request.getAttribute(ITEMS_ORDERED);
+                if (itemsSelected != null) {
+                    itemsOrdered = (ArrayList<MenuItem>) itemsSelected;
+                }
             %>
             <%for (MenuItem m : itemsOrdered) {%>
 
