@@ -7,28 +7,18 @@ import java.util.ArrayList;
  * @author Mark Van Weelden
  */
 public class OrderCalculator {
-    private String[] items;
-    private MockMenuDatabase db = new MockMenuDatabase();
-    private double subTotal;
-    private double total;
+
+    private double subTotal = 0;
     private static final double TAX_RATE = .05;
 
-    public OrderCalculator(String[] items) {
-        this.items = items;
+    public OrderCalculator() {
+       
     }
     
-    public ArrayList<MenuItem> getItemsOrdered(){
-        ArrayList<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
-        for (String s : items) {
-            itemsOrdered.add(db.getMenuItem(s));      
-        }
-        return itemsOrdered;
-    }
-
-    public double getSubTotal() {
+    public double getSubTotal(ArrayList<MenuItem> items) {
     
-        for (String s : items) {
-            subTotal += db.getMenuItemPrice(s);
+        for (MenuItem menuItem : items) {
+            subTotal += menuItem.getItemPrice();
         }
         return subTotal;
     }

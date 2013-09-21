@@ -8,15 +8,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DB_Generic;
+import model.DataAccessException;
+import model.MenuDAO;
 import model.MenuItem;
 import model.MockMenuDatabase;
 import model.OrderCalculator;
+import model.OrderService;
 
 /**
  *
@@ -24,9 +30,9 @@ import model.OrderCalculator;
  */
 @WebServlet(name = "ConformationController", urlPatterns = {"/Conformation"})
 public class ConformationController extends HttpServlet {
-    
+
     private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
-    private static final String MENU_CHOICES =  "menuChoices[]";
+    private static final String MENU_CHOICES = "menuChoices[]";
     private static final String ITEMS_ORDERED = "itemsOrdered";
     private static final String SUB_TOTAL = "subTotal";
     private static final String TOTAL = "total";
@@ -44,19 +50,26 @@ public class ConformationController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType(CONTENT_TYPE);
-        String[] menuChoices = request.getParameterValues(MENU_CHOICES);
-        OrderCalculator o = new OrderCalculator(menuChoices);
-        ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
-        double subTotal = o.getSubTotal();
-        double total = o.getTotal();
-        request.setAttribute(ITEMS_ORDERED, itemsOrdered);
-        request.setAttribute(SUB_TOTAL, subTotal);
-        request.setAttribute(TOTAL, total);
+        try {
+            response.setContentType(CONTENT_TYPE);
+            String[] menuChoices = request.getParameterValues(MENU_CHOICES);
+    //        OrderCalculator o = new OrderCalculator(menuChoices); 
+            OrderService o = new OrderService(new MenuDAO(new DB_Generic()),menuChoices);
+            ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
+            double subTotal = o.getSubTotal();
+            double total = o.getTotal();
 
-        RequestDispatcher view =
-                request.getRequestDispatcher(DESTINATION_URL);
-        view.forward(request, response);
+
+            request.setAttribute(ITEMS_ORDERED, itemsOrdered);
+            request.setAttribute(SUB_TOTAL, subTotal);
+            request.setAttribute(TOTAL, total);
+
+            RequestDispatcher view =
+                    request.getRequestDispatcher(DESTINATION_URL);
+            view.forward(request, response);
+        } catch (DataAccessException ex) {
+            Logger.getLogger(ConformationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

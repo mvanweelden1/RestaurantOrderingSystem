@@ -6,16 +6,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DataAccessException;
 import model.MenuItem;
 import model.MockMenuDatabase;
-import model.RestaurantService;
+import model.MenuService;
 
 /**
  *
@@ -39,16 +43,16 @@ public class RestaurantOrderingController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DataAccessException{
         response.setContentType(CONTENT_TYPE);
         
         //MockMenuDatabase db = new MockMenuDatabase();
         //MenuItem[] items = db.getMenu();
         //Map<String, MenuItem> items = db.getMenuItemMap();
         
-        RestaurantService rs = new RestaurantService();
+        MenuService rs = new MenuService();
         
-        Map<String, MenuItem> items = rs.getAllMenuItems();
+        List<MenuItem> items = rs.getAllMenuItems();
         
         request.setAttribute(MENU_ITEMS, items);
         
@@ -71,7 +75,11 @@ public class RestaurantOrderingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DataAccessException ex) {
+            Logger.getLogger(RestaurantOrderingController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -86,7 +94,11 @@ public class RestaurantOrderingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DataAccessException ex) {
+            Logger.getLogger(RestaurantOrderingController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

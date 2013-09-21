@@ -4,6 +4,7 @@
     Author     : Mark Van Weelden
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="model.MenuItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,16 +22,18 @@
                 <%
                     final String MENU_ITEMS = "menuitems";
                     
-                    Map<String, MenuItem> menuItems = null;
+                    List<MenuItem> menuItems = null;
                     Object menu = request.getAttribute(MENU_ITEMS);
                     if (menu != null) {
-                        menuItems = (Map<String, MenuItem>) menu;
+                        menuItems = (List<MenuItem>) menu;
                     }
                 %>
                 <%
-                    for (String key : menuItems.keySet()) {
+                    for (MenuItem item : menuItems) {
+                        String name = item.getItemName();
+                        int value = item.getItemId();
                 %>      
-                <input type='checkbox' name='menuChoices[]'value='<%= key%>'/><%= key%><br>
+                <input type='checkbox' name='menuChoices[]'value='<%= value %>'/><%= name%><br>
 
                 <%}%>
 

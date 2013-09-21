@@ -8,7 +8,11 @@ public class MenuItem {
     
     private String itemName;
     private double itemPrice;
+    private int itemId;
 
+    public MenuItem() {
+    }
+    
     public MenuItem(String itemName, double itemPrice) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -30,10 +34,21 @@ public class MenuItem {
         this.itemPrice = itemPrice;
     }
 
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
     @Override
     public String toString() {
-        return "MenuItem{" + "itemName=" + itemName + ", itemPrice=" + itemPrice + '}';
+        return "MenuItem{" + "itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemId=" + itemId + '}';
     }
+    
+
+  
     
     
     
