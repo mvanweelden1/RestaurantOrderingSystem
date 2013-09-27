@@ -5,31 +5,27 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DataAccessException;
-import model.MenuItem;
-import model.MenuService;
 
 /**
  *
- * @author Owner
+ * @author Mark Van Weelden
  */
-@WebServlet(name = "RestaurantOrderingController", urlPatterns = {"/RestaurantOrderingController"})
-public class RestaurantOrderingController extends HttpServlet {
-    
+@WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
+public class FrontController extends HttpServlet {
+
     private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
-    private static final String DESTINATION_URL = "/orderForm.jsp";
-    private static final String MENU_ITEMS = "menuitems";
+    private static final String ORDER = "Order";
+    private static final String MANAGE = "Manage";
+    private static final String ACTION = "action";
+    private static final String ORDER_CONTROLLER = "/RestaurantOrderingController";
+    private static final String HOME = "/index.jsp";
+    private static final String MANAGEMENT_PAGE = "/DataManagement.jsp";
 
     /**
      * Processes requests for both HTTP
@@ -42,23 +38,23 @@ public class RestaurantOrderingController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DataAccessException{
+            throws ServletException, IOException {
         response.setContentType(CONTENT_TYPE);
+        String destination = HOME;
+
+        String result = request.getParameter(ACTION);
         
-        //MockMenuDatabase db = new MockMenuDatabase();
-        //MenuItem[] items = db.getMenu();
-        //Map<String, MenuItem> items = db.getMenuItemMap();
-        
-        MenuService rs = new MenuService();
-        
-        List<MenuItem> items = rs.getAllMenuItems();
-        
-        request.setAttribute(MENU_ITEMS, items);
-        
-        RequestDispatcher view =
-                    request.getRequestDispatcher(DESTINATION_URL);
-            view.forward(request, response);
-   
+
+        if (result.equals(ORDER)) {
+            destination = ORDER_CONTROLLER;
+        }else if (result.equals(MANAGE)){
+            destination = MANAGEMENT_PAGE;
+        }
+
+        RequestDispatcher dispatcher =
+                getServletContext().getRequestDispatcher(destination);
+        dispatcher.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,11 +70,7 @@ public class RestaurantOrderingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (DataAccessException ex) {
-            Logger.getLogger(RestaurantOrderingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -93,11 +85,7 @@ public class RestaurantOrderingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (DataAccessException ex) {
-            Logger.getLogger(RestaurantOrderingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

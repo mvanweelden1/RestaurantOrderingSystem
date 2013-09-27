@@ -31,7 +31,7 @@
                 <%
                     for (MenuItem item : menuItems) {
                         String name = item.getItemName();
-                        int value = item.getItemId();
+                        Long value = item.getItemId();
                 %>      
                 <input type='checkbox' name='menuChoices[]'value='<%= value %>'/><%= name%><br>
 

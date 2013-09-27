@@ -11,7 +11,7 @@ public class MenuService {
     private IMenuDAO  menuDao; 
 
     public MenuService() {
-        menuDao = new MenuDAO(new DB_Generic());
+        menuDao = new MenuDAO();
     }
     
     public List getAllMenuItems() throws DataAccessException {

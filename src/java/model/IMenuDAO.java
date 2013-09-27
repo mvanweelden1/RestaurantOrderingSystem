@@ -11,6 +11,13 @@ public interface IMenuDAO{
         public abstract List getAllMenuItems() throws DataAccessException;
         
         public abstract MenuItem getMenuItemById(String key) throws DataAccessException;
+        
+        public abstract void save(MenuItem m) throws DataAccessException;
+        
+        public abstract void deleteMenuItem(MenuItem m) throws DataAccessException;
+        
+        
+        
 
     
 }

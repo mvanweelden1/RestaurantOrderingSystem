@@ -8,7 +8,7 @@ public class MenuItem {
     
     private String itemName;
     private double itemPrice;
-    private int itemId;
+    private Long itemId;
 
     public MenuItem() {
     }
@@ -35,11 +35,11 @@ public class MenuItem {
         this.itemPrice = itemPrice;
     }
 
-    public int getItemId() {
+    public Long getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
 

@@ -8,12 +8,11 @@ import java.util.ArrayList;
  */
 public class OrderService {
 
-    private IMenuDAO menuDao;
+    private IMenuDAO menuDao = new MenuDAO();
     ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
     OrderCalculator calc = new OrderCalculator(itemsOrdered);
 
-    public OrderService(IMenuDAO menuDao, String[] s) throws DataAccessException {
-        this.menuDao = menuDao;
+    public OrderService(String[] s) throws DataAccessException {
         populateItemsOrdered(s);
     }
 
@@ -56,7 +55,7 @@ public class OrderService {
 
         String[] items = {"1", "2"};
 
-        OrderService o = new OrderService(new MenuDAO(new DB_Generic()), items);
+        OrderService o = new OrderService(items);
 
         System.out.println(o.getSubTotal());
     }

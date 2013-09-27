@@ -52,7 +52,7 @@ public class ConformationController extends HttpServlet {
             response.setContentType(CONTENT_TYPE);
             String[] menuChoices = request.getParameterValues(MENU_CHOICES);
     //        OrderCalculator o = new OrderCalculator(menuChoices); 
-            OrderService o = new OrderService(new MenuDAO(new DB_Generic()),menuChoices);
+            OrderService o = new OrderService(menuChoices);
             ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
             double subTotal = o.getSubTotal();
             double total = o.getTotal();
