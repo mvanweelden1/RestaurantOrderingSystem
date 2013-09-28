@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link href="Styles/management.css" rel="stylesheet" type="text/css">
+<link href="Styles/admin.css" rel="stylesheet" type="text/css">
 
 <!DOCTYPE html>
 

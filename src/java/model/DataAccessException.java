@@ -2,7 +2,7 @@ package model;
 
 /**
  *
- * @author Owner
+ * @author Mark Van Weelden
  */
 public class DataAccessException extends Exception {
 

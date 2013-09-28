@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author Mark Van Weelden
  */
-public interface IMenuDAO{
+public abstract interface IMenuDAO{
     
         public abstract List getAllMenuItems() throws DataAccessException;
         

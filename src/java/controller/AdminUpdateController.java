@@ -18,11 +18,11 @@ import model.MenuService;
  *
  * @author Mark Van Weelden
  */
-@WebServlet(name = "DataUpdateController", urlPatterns = {"/Update"})
-public class DataUpdateController extends HttpServlet {
+@WebServlet(name = "AdminUpdateController", urlPatterns = {"/Update"})
+public class AdminUpdateController extends HttpServlet {
 
     private static final String ACTION = "action";
-    private static final String DESTINATION_URL = "/dataManagement.jsp";
+    private static final String DESTINATION_URL = "/admin.jsp";
 
     /**
      * Processes requests for both HTTP
@@ -74,14 +74,14 @@ public class DataUpdateController extends HttpServlet {
                     request.setAttribute("item", item);
                 } catch (DataAccessException ex) {
 
-                    Logger.getLogger(DataUpdateController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AdminUpdateController.class.getName()).log(Level.SEVERE, null, ex);
 
                 }
 
             }
 
             RequestDispatcher view =
-                    request.getRequestDispatcher("/updateMenuForm.jsp");
+                    request.getRequestDispatcher("/adminUpdateForm.jsp");
             view.forward(request, response);
 
         } else if (action.equals("Finalize")) {
@@ -98,7 +98,7 @@ public class DataUpdateController extends HttpServlet {
                 updatedItems = ms.getAllMenuItems();
 
             } catch (DataAccessException ex) {
-                Logger.getLogger(DataUpdateController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminUpdateController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             request.setAttribute("menuitems", updatedItems);

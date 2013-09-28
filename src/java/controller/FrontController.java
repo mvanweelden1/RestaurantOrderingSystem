@@ -23,9 +23,9 @@ public class FrontController extends HttpServlet {
     private static final String ORDER = "Order";
     private static final String MANAGE = "Manage";
     private static final String ACTION = "action";
-    private static final String ORDER_CONTROLLER = "/RestaurantOrderingController";
+    private static final String MENU_CONTROLLER = "/MenuController";
     private static final String HOME = "/index.jsp";
-    private static final String MANAGEMENT_CONTROLLER = "/ManagementController";
+    private static final String ADMIN_CONTROLLER = "/AdminController";
 
     /**
      * Processes requests for both HTTP
@@ -46,9 +46,9 @@ public class FrontController extends HttpServlet {
         
 
         if (result.equals(ORDER)) {
-            destination = ORDER_CONTROLLER;
+            destination = MENU_CONTROLLER;
         }else if (result.equals(MANAGE)){
-            destination = MANAGEMENT_CONTROLLER;
+            destination = ADMIN_CONTROLLER;
         }
 
         RequestDispatcher dispatcher =
