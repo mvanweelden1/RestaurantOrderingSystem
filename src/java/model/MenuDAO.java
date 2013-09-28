@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -191,16 +189,27 @@ public class MenuDAO implements IMenuDAO {
 //
 //        dao.deleteMenuItem(mi);
 
+//        List<MenuItem> items = dao.getAllMenuItems();
+//
+//        for (MenuItem m : items) {
+//
+//            System.out.println(m.getItemId() + m.getItemName() + m.getItemPrice());
+//
+//        }
+
+        MenuItem item = new MenuItem("Hot dog", 2.00, null);
+
+        dao.save(item);
+
         List<MenuItem> items = dao.getAllMenuItems();
 
         for (MenuItem m : items) {
 
             System.out.println(m.getItemId() + m.getItemName() + m.getItemPrice());
 
+
+
+
         }
-
-
-
-
     }
 }

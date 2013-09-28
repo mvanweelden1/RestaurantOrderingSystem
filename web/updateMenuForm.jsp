@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="Styles/management.css" rel="stylesheet" type="text/css">
+
 <!DOCTYPE html>
 
 
@@ -14,14 +16,24 @@
         <title>Menu Update Form</title>
     </head>
     <body>
-        <form name="form1" id="form1" method="POST" action="Update">
-            <input type="hidden" name="id" value="${item.itemId}" />
-            <label for="itemName">Item Name</label>
-            <input type="text" name="itemName" value="${item.itemName}"/>  
-            <label for="itemPrice">Item Price</label>
-            <input type="text" name="itemPrice" value="${item.itemPrice}"/>
-            <input type="submit" name="action" value="Finalize"/>
-        </form>
-
+        <div id="form" name="form">
+            <form name="form2" id="form2" method="POST" action="Update">
+                <fieldset>
+                    <legend>Add/Update Form</legend>
+                    <div>
+                        <input class="title" type="hidden" name="id" value="${item.itemId}" />
+                    </div>
+                    <div>
+                        <label class="title" for="itemName">Item Name:</label>
+                        <input type="text" name="itemName" value="${item.itemName}"/>
+                    </div>
+                    <div>
+                        <label class="title" for="itemPrice">Item Price:</label>
+                        <input type="text" name="itemPrice" value="${item.itemPrice}"/>
+                    </div>
+                    <div><input type="submit" name="action" id="action" value="Finalize"/></div>
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>

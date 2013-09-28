@@ -17,7 +17,7 @@
         <title>Management</title>
     </head>
     <body>
-        <div>
+        <div id="form" name="form">
             <h1>Manage Menu Items</h1>
             <form name="form1" id="form1" method="POST" action="Update">
 
@@ -51,7 +51,7 @@
                 </table>
 
                 <p><input class="submitbutton" type="submit" name="action" value="Delete"/></p>
-                <p><input type="submit" name="action" value="Add/Change"/></p>
+                <p><input class="submitbutton" type="submit" name="action" value="Add/Change"/></p>
 
 
             </form>
