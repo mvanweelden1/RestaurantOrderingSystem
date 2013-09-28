@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class MenuService {
     
-    private IMenuDAO  menuDao; 
-
+    private IMenuDAO menuDao;
+    
     public MenuService() {
         menuDao = new MenuDAO();
     }
@@ -20,4 +20,24 @@ public class MenuService {
         
     }
     
+    public MenuItem getMenuItem(String id)throws DataAccessException{
+        
+        return menuDao.getMenuItemById(id);
+    }
+    
+    public void updateMenuItem(MenuItem m) throws DataAccessException {
+         
+            menuDao.save(m);
+             
+    }
+    
+    public void deleteMenuItem(String[] ids) throws DataAccessException {
+        
+        for (String s : ids) {
+            MenuItem m = menuDao.getMenuItemById(s);
+            menuDao.deleteMenuItem(m);
+            
+        }
+        
+    }
 }

@@ -2,3 +2,79 @@
     text-align: right;
 }
 
+body {
+    background:#f5faff;
+    font-family: Verdana, Geneva, sans-serif;
+    margin: 10px;
+}
+label {
+    display:block;
+}
+
+.box { 
+    border-style:solid;
+    border-width:2px;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+h1, h2 {
+    color: #b91d3c;
+    background-color: white;
+    text-align: center;
+    width: 1000px;
+    font-family: 'Miltonian', cursive;
+    font-size: 75px;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-bottom: 10px;
+
+}
+h2{
+
+    margin-top: 10px;
+
+}
+img.box {
+    display: block;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+form {
+    text-align: center;
+}
+#action, #submit {
+    font-size: 14px;
+    color: #020f1d;
+    padding: 5px 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 3px solid #020f1d;
+    margin-bottom: 10px;
+}
+#form1{
+    text-align: left;
+    margin-left: 300px;
+
+}
+#menu{
+    width: 1000px;
+    margin-left: auto ;
+    margin-right: auto ;
+    background-color: white;
+    color: #b91d3c;
+
+}
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:22px;
+}
+.checkboxtext{
+    font-size: 200%;
+    display: inline;
+}
+#conformation{
+    margin-left: auto ;
+    margin-right: auto ;
+}

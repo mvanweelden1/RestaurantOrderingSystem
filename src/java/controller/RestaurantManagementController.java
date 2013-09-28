@@ -5,27 +5,26 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.MenuItem;
+import model.MenuService;
 
 /**
  *
- * @author Mark Van Weelden
+ * @author Owner
  */
-@WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
-public class FrontController extends HttpServlet {
+@WebServlet(name = "RestaurantManagementController", urlPatterns = {"/ManagementController"})
+public class RestaurantManagementController extends HttpServlet {
 
-    private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
-    private static final String ORDER = "Order";
-    private static final String MANAGE = "Manage";
-    private static final String ACTION = "action";
-    private static final String ORDER_CONTROLLER = "/RestaurantOrderingController";
-    private static final String HOME = "/index.jsp";
-    private static final String MANAGEMENT_CONTROLLER = "/ManagementController";
+    private static final String MENU_ITEMS = "menuitems";
+    private static final String DESTINATION_URL = "/dataManagement.jsp";
 
     /**
      * Processes requests for both HTTP
@@ -39,22 +38,23 @@ public class FrontController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType(CONTENT_TYPE);
-        String destination = HOME;
+        response.setContentType("text/html;charset=UTF-8");
+        try {
 
-        String result = request.getParameter(ACTION);
-        
+            MenuService rs = new MenuService();
 
-        if (result.equals(ORDER)) {
-            destination = ORDER_CONTROLLER;
-        }else if (result.equals(MANAGE)){
-            destination = MANAGEMENT_CONTROLLER;
+            List<MenuItem> items = rs.getAllMenuItems();
+
+            request.setAttribute(MENU_ITEMS, items);
+
+        } catch (Exception e) {
+            
+            
         }
 
-        RequestDispatcher dispatcher =
-                getServletContext().getRequestDispatcher(destination);
-        dispatcher.forward(request, response);
-
+        RequestDispatcher view =
+                request.getRequestDispatcher(DESTINATION_URL);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

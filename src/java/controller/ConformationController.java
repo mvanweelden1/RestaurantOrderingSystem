@@ -14,12 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DB_Generic;
 import model.DataAccessException;
-import model.MenuDAO;
 import model.MenuItem;
-import model.MockMenuDatabase;
-import model.OrderCalculator;
 import model.OrderService;
 
 /**
@@ -35,6 +31,7 @@ public class ConformationController extends HttpServlet {
     private static final String SUB_TOTAL = "subTotal";
     private static final String TOTAL = "total";
     private static final String DESTINATION_URL = "/conformationPage.jsp";
+   
 
     /**
      * Processes requests for both HTTP
@@ -48,10 +45,12 @@ public class ConformationController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
         try {
             response.setContentType(CONTENT_TYPE);
             String[] menuChoices = request.getParameterValues(MENU_CHOICES);
-    //        OrderCalculator o = new OrderCalculator(menuChoices); 
+            //        OrderCalculator o = new OrderCalculator(menuChoices); 
             OrderService o = new OrderService(menuChoices);
             ArrayList<MenuItem> itemsOrdered = o.getItemsOrdered();
             double subTotal = o.getSubTotal();
@@ -62,12 +61,14 @@ public class ConformationController extends HttpServlet {
             request.setAttribute(SUB_TOTAL, subTotal);
             request.setAttribute(TOTAL, total);
 
-            RequestDispatcher view =
-                    request.getRequestDispatcher(DESTINATION_URL);
-            view.forward(request, response);
+
         } catch (DataAccessException ex) {
-            Logger.getLogger(ConformationController.class.getName()).log(Level.SEVERE, null, ex);
+          
         }
+
+        RequestDispatcher view =
+                request.getRequestDispatcher(DESTINATION_URL);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -13,10 +13,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="Styles/maincss.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet' type='text/css'>
         <title>Conformation Page</title>
     </head>
     <body>
-        <table>
+        <h1 class="box">Conformation Page</h1>
+
+        <table name="conformation" id="conformation">
             <%
                 final String ITEMS_ORDERED = "itemsOrdered";
                 final String SUB_TOTAL = "subTotal";

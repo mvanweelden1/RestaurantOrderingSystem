@@ -13,33 +13,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="Styles/maincss.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet' type='text/css'>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <title>Order Form</title>
     </head>
     <body>
-        <form name="form1" id="form1" method="POST" action="Conformation">
-            <fieldset>
-                <legend> Menu </legend>
-                <%
-                    final String MENU_ITEMS = "menuitems";
-                    
-                    List<MenuItem> menuItems = null;
-                    Object menu = request.getAttribute(MENU_ITEMS);
-                    if (menu != null) {
-                        menuItems = (List<MenuItem>) menu;
-                    }
-                %>
-                <%
-                    for (MenuItem item : menuItems) {
-                        String name = item.getItemName();
-                        Long value = item.getItemId();
-                %>      
-                <input type='checkbox' name='menuChoices[]'value='<%= value %>'/><%= name%><br>
+        <h1 class="box">Clever Restaurant Name</h1>
+        <div id="menu" name="menu" class="box">
+            <h2>Menu</h2>
+            <form name="form1" id="form1" method="POST" action="Conformation">
 
-                <%}%>
+                <c:forEach var="menuItem" items="${menuitems}" varStatus="i">
+                    <input type='checkbox' name='menuChoices[]'value='${menuItem.itemId}'/><span class="checkboxtext">${menuItem.itemName}</span><br>
+                </c:forEach>
 
                 <p><input type="submit" name="submit" id="submit" value="Place Order"/></p>
-            </fieldset> 
-        </form>
+            </form>
+        </div>
     </body>
 
     <!-- jQuery -->
