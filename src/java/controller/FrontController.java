@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mark Van Weelden
  */
-@WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
+
 public class FrontController extends HttpServlet {
 
     private static final String CONTENT_TYPE = "text/html;charset=UTF-8";

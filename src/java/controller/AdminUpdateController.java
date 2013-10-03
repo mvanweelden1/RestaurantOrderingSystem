@@ -87,7 +87,7 @@ public class AdminUpdateController extends HttpServlet {
         } else if (action.equals("Finalize")) {
 
             String id = request.getParameter("id");
-            Long objId = (id.equals("null") || id.length() == 0) ? null : new Long(id);
+            Long objId = (id == null || id.length() == 0) ? null : new Long(id);
             String name = request.getParameter("itemName");
             double price = Double.valueOf(request.getParameter("itemPrice"));
 

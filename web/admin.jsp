@@ -58,5 +58,5 @@
         </div>
     </body>
     <script src="Scripts/jquery-1.10.2.min.js"></script>
-    <script src="Scripts/managementjs.js"></script>
+    <script src="Scripts/adminjs.js"></script>
 </html>

@@ -20,7 +20,7 @@
         <title>Order Form</title>
     </head>
     <body>
-        <h1 class="box">Clever Restaurant Name</h1>
+        <h1 class="box">${name}</h1>
         <div id="menu" name="menu" class="box">
             <h2>Menu</h2>
             <form name="form1" id="form1" method="POST" action="Conformation">

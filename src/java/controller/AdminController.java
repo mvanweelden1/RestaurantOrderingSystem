@@ -19,7 +19,6 @@ import model.MenuService;
  *
  * @author Owner
  */
-@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
 public class AdminController extends HttpServlet {
 
     private static final String MENU_ITEMS = "menuitems";
@@ -39,6 +38,11 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            
+            String driver = this.getInitParameter("driver");
+            String dburl = this.getInitParameter("local-db-url");
+            String username = this.getInitParameter("username");
+            String password = this.getInitParameter("password");
 
             MenuService rs = new MenuService();
 
